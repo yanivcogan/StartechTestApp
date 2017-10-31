@@ -1,0 +1,13 @@
+{
+  "layers" : [
+    {
+      "image": "moominhouse.png",
+      "name": "moomin house",
+      "x": -10,
+      "y": -20,
+      "depth": -0.8,
+      "drawIndex": 0
+    }
+  ]
+
+}
