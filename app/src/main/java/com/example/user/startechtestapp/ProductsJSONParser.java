@@ -1,5 +1,8 @@
 package com.example.user.startechtestapp;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,12 +15,15 @@ import java.util.List;
  */
 
 public class ProductsJSONParser {
-    public static JSONArray parse(String s)
+    static GsonBuilder builder = new GsonBuilder();
+    static Gson gson = builder.create();
+    public static List<Item> parse(String s)
     {
             try {
                 JSONObject jsonObject=new JSONObject(s);
                 JSONArray jsonArr = jsonObject.getJSONArray("products");
-                return jsonArr;
+                List<Item> itemList = gson.fromJson(s, List<Item.class>);
+return itemList;
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;

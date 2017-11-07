@@ -1,6 +1,8 @@
 package com.example.user.startechtestapp;
 
+import com.inneractive.api.ads.sdk.InneractiveAdManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +14,8 @@ import android.view.View;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
         txtReader=new TXTReader(context);
         itemPreviewer = new Previewer(this);
+        LayoutAdPopulator.initializeServiceProvider(this);
         buildUI();
         initializeResults();
 /*
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeResults()
     {
         results = getData();
-        showResultsInListView();
+        showResultsInGridView();
     }
     private List<Item> getData(){
         List <Item> itemList = new ArrayList<>();
@@ -85,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
     private void buildUI()
     {
         rv = (RecyclerView) findViewById(R.id.rvListContainer);
+        LayoutControlsInitiator.initiateControls(this,myAdapter);
+        FrameLayout ad = (FrameLayout) findViewById(R.id.ad);
+        LayoutAdPopulator.adifyLayout(ad, this);
     }
     public void showResultsInListView()
     {
@@ -100,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
             myAdapter.setResults(results);
             myAdapter.notifyDataSetChanged();
         }
-
     }
     public void showResultsInGridView()
     {

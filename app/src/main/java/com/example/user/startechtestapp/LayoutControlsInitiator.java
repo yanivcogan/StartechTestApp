@@ -14,17 +14,18 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 public class LayoutControlsInitiator {
     public static void initiateControls (final Activity context, final SearchResultsAdapter adapter)
     {
-        Button toGrid = (Button) context.findViewById(R.id.layoutSwitchGrid);
+        final Button toGrid = (Button) context.findViewById(R.id.layoutSwitchGrid);
+        final Button toList = (Button) context.findViewById(R.id.layoutSwitchList);
         toGrid.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("CLICK", "grid");
-
+                toGrid.setVisibility(View.GONE);
+                toList.setVisibility(View.VISIBLE);
             }
         });
-        Button toList = (Button) context.findViewById(R.id.layoutSwitchList);
         toList.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("CLICK", "list");
+                toList.setVisibility(View.GONE);
+                toGrid.setVisibility(View.VISIBLE);
             }
         });
     }

@@ -8,46 +8,60 @@
 
     <FrameLayout
         android:id="@+id/canvasContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="402dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/itemImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/moominhouse"
-            tools:layout_editor_absoluteX="321dp"
-            tools:layout_editor_absoluteY="1dp" />
+            tools:layout_editor_absoluteY="0dp" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/itemTitle"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/detailsBackground"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="58dp"
-        android:text="Title"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/canvasContainer"
-        tools:layout_editor_absoluteX="0dp" />
+        android:background="#CCffffff"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/canvasContainer">
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            app:layout_constraintTop_toTopOf="@id/detailsBackground"
+            />
 
 
-    <TextView
-        android:id="@+id/itemImgURL"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="TextView with really long text to test ellipses 123 4rvmk mkjlm mklm fike"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/canvasContainer"
-        tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:id="@+id/itemImgURL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="TextView with really long text to test ellipses 123 4rvmk mkjlm mklm fike"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/detailsBackground" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
 
 
