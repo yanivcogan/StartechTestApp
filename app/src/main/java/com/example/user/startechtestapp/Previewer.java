@@ -1,32 +1,27 @@
 package com.example.user.startechtestapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by User on 29/10/2017.
- */
+class Previewer {
+    private Item previewItem;
+    private ImageView previewItemThumbnail;
+    private TextView previewItemTitle;
+    private TextView previewItemDescription;
 
-public class Previewer {
-    Item previewItem;
-    ImageView previewItemThumbnail;
-    TextView previewItemTitle;
-    TextView previewItemDescription;
-
-    public Previewer (Activity ctx)
+    Previewer(Activity ctx)
     {
         previewItemTitle=(TextView) ctx.findViewById(R.id.previewItemTitle);
         previewItemDescription=(TextView) ctx.findViewById(R.id.previewItemDescription);
         previewItemThumbnail=(ImageView) ctx.findViewById(R.id.previewItemThumbnail);
     }
-    public void setPreviewItem (Item it)
+    void setPreviewItem(Item it)
     {
         unsetPreviewItem();
         this.previewItem=it;
         previewItemTitle.setText(previewItem.getTitle());
-        previewItemDescription.setText(previewItem.getImgURL());
+        previewItemDescription.setText(previewItem.getAuthorName());
         it.getImageView().addView(previewItemThumbnail);
     }
     private void unsetPreviewItem()

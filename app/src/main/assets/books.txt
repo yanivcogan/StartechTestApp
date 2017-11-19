@@ -1,0 +1,19 @@
+[
+{
+"title":"Moominvalley in November",
+"author_id":0,
+"author_name":"Tove Jansson",
+"series_id":0,
+"series_name":"The Moomins",
+"publication_year":1970,
+"ISBN":"0374453098",
+"language":"en",
+"thumbnail_path":"",
+"cover_image_path":"",
+"parallax_thumbnail":{"layers":[
+{"image_path":"moominhouse","name":"moominhouse_fall", "center_offset_x":0, "center_offset_y":0, "parallax_factor_x":-0.1, "parallax_factor_y":-0.1},
+{"image_path":"moomintroll","name":"moomintroll", "center_offset_x":-0.1, "center_offset_y":0.3, "parallax_factor_x":0.5, "parallax_factor_y":0.5}
+]},
+"tags":["fiction", "melancholy", "kids"]
+}
+]

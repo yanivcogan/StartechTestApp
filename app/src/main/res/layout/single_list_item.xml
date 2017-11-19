@@ -6,11 +6,6 @@
     android:orientation="horizontal">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
         <FrameLayout
             android:id="@+id/canvasContainer"
             android:layout_width="wrap_content"
@@ -18,43 +13,42 @@
 
             <ImageView
                 android:id="@+id/itemImage"
-                android:layout_width="400px"
-                android:layout_height="400px"
-                app:srcCompat="@drawable/moominhouse" />
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/moominhouse"
+                android:contentDescription="imageThumbnail" />
         </FrameLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.7"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/itemTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="0.2"
                 android:ellipsize="end"
-                android:maxLines="2"
-                android:text="TextViewwith really long text to test ellipses 123 4rvmk mkjlm mklm fike"
+                android:singleLine="true"
+                android:text="Text Viewwith really long text to test ellipses 123 4rvmk mkjlm mklm fike"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/itemImgURL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.2"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:text="someURL"
-                android:textColor="#000"
-                android:textSize="18sp" />
+                android:textColor="#222"
+                android:textSize="16sp" />
         </LinearLayout>
-    </LinearLayout>
-
-
 </LinearLayout>

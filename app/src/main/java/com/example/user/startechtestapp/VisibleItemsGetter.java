@@ -1,13 +1,11 @@
 package com.example.user.startechtestapp;
 
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisibleItemsGetter {
-    public static List<Item> getVisibleItems(LinearLayoutManager lm, List<Item> li)
+class VisibleItemsGetter {
+    static List<Item> getVisibleItems(LinearLayoutManager lm, List<Item> li)
     {
         List<Item> res = new ArrayList<>();
         int beg = lm.findFirstVisibleItemPosition();

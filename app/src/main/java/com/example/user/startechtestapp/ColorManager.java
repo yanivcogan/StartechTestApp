@@ -1,17 +1,12 @@
 package com.example.user.startechtestapp;
 
 import android.graphics.Color;
-
-/**
- * Created by User on 17/09/2017.
- */
-
-public class ColorManager {
-    public static int getRandomColor()
+class ColorManager {
+    static int getRandomColor()
     {
         return ColorManager.getWeightedRandomColor(new double[]{1.0,1.0,1.0});
     }
-    public static int getWeightedRandomColor(double[]weight)
+    private static int getWeightedRandomColor(double[] weight)
     {
         if(weight.length!=3)
         {

@@ -1,65 +1,157 @@
 package com.example.user.startechtestapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by User on 24/09/2017.
- */
 
 public class Item {
-    private static int canvasDisplayWidth = 500;
-    private static int canvasDisplayHeight = 500;
-    private String title;
-    private String imgURL;
-    private Boolean visibility;
-    ImageViewDrawer canvasDisplay;
+    @Expose @SerializedName("title") private String title;
+    @Expose @SerializedName("author_id") private int authorId;
+    @Expose @SerializedName("author_name") private String authorName;
+    @Expose @SerializedName("series_id") private Integer seriesId;
+    @Expose @SerializedName("series_name") private String seriesName;
+    @Expose @SerializedName("publication_year") private int publicationYear;
+    @Expose @SerializedName("ISBN") private String isbn;
+    @Expose @SerializedName("language") private String language;
+    @Expose @SerializedName("thumbnail_path") private String thumbnailPath;
+    @Expose @SerializedName("cover_image_path") private String coverImgPath;
+    @Expose @SerializedName("parallax_thumbnail") private ParallaxView parallaxThumbnail;
+    private ImageViewDrawer canvasDisplay = null;
 
-    public Item (String title, String imgURL)
-    {
-        this.title=title;
-        this.imgURL=imgURL;
+    public Item(String title, int authorId, String authorName, Integer seriesId, String seriesName, int publicationYear, String isbn, String language, String thumbnailPath, String coverImgPath) {
+        this.title = title;
+        this.authorId = authorId;
+        this.authorName = authorName;
+        this.seriesId = seriesId;
+        this.seriesName = seriesName;
+        this.publicationYear = publicationYear;
+        this.isbn = isbn;
+        this.language = language;
+        this.thumbnailPath = thumbnailPath;
+        this.coverImgPath = coverImgPath;
     }
-    public String getTitle() {
+
+    String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
-
-    public String getImgURL() {
-        return imgURL;
+    String getAuthorName() {
+        return authorName;
     }
 
-    public void setImgURL(String imgURL) {
-        this.imgURL = imgURL;
+    void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
-    public void setImageView (ImageView iv)
+
+    Integer getSeriesId() {
+        return seriesId;
+    }
+
+    void setSeriesId(Integer seriesId) {
+        this.seriesId = seriesId;
+    }
+
+    String getSeriesName() {
+        return seriesName;
+    }
+
+    void setSeriesName(String seriesName) {
+        this.seriesName = seriesName;
+    }
+
+    int getPublicationYear() {
+        return publicationYear;
+    }
+
+    void setPublicationYear(int publicationYear) {
+        this.publicationYear = publicationYear;
+    }
+
+    String getIsbn() {
+        return isbn;
+    }
+
+    void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    String getLanguage() {
+        return language;
+    }
+
+    void setLanguage(String language) {
+        this.language = language;
+    }
+
+    String getThumbnailPath() {
+        return thumbnailPath;
+    }
+
+    void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath;
+    }
+
+    String getCoverImgPath() {
+        return coverImgPath;
+    }
+
+    void setCoverImgPath(String coverImgPath) {
+        this.coverImgPath = coverImgPath;
+    }
+
+    ImageViewDrawer getCanvasDisplay() {
+        return canvasDisplay;
+    }
+
+    void setCanvasDisplay(ImageViewDrawer canvasDisplay) {
+        this.canvasDisplay = canvasDisplay;
+    }
+
+    int getAuthorId() {
+        return authorId;
+    }
+
+    void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    void setImageView (ImageView iv)
     {
         if(canvasDisplay==null)
         {
-            canvasDisplay=new ImageViewDrawer(iv, canvasDisplayWidth, canvasDisplayHeight);
+            canvasDisplay=new ImageViewDrawer(iv, 500, 500);
         }
     }
-    public ImageViewDrawer getImageView ()
+
+    ImageViewDrawer getImageView ()
     {
         return canvasDisplay;
     }
-    public void draw()
+    void loadParallaxLayersImages(Context context)
     {
-        if(canvasDisplay==null)
+        parallaxThumbnail.loadLayerImages(context);
+    }
+    void draw(double[] tilt)
+    {
+        if(canvasDisplay!=null)
         {
-            return;
-        }
-        else
-        {
-            canvasDisplay.draw();
+            ParallaxViewDrawer.draw(canvasDisplay.getCanvas(),parallaxThumbnail,tilt);
+            canvasDisplay.updateViews();
         }
     }
-    public void goToPage (Context origin)
+
+    void goToPage (Context origin)
     {
         ItemPageDirector.goToItemPage(this, origin);
+    }
+
+    public String toString ()
+    {
+        return "{"+this.title+"/"+this.authorName+"}";
     }
 }
