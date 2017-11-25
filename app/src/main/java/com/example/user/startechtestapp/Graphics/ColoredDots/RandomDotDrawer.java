@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Graphics.ColoredDots;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

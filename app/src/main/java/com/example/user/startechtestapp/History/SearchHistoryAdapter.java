@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.History;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,19 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.user.startechtestapp.R;
+import com.example.user.startechtestapp.Search.Searcher;
+
 import java.util.List;
 
 public class SearchHistoryAdapter extends RecyclerView.Adapter <SearchHistoryAdapter.ViewHolder> {
     private List<String> data;
     private Searcher searcher;
-    Context context;
-    SearchHistoryAdapter(List<String> history, Context context, Searcher searcher)
+    private Context context;
+    public SearchHistoryAdapter(List<String> history, Context context, Searcher searcher)
     {
         this.data=history;
         this.context=context;
         this.searcher=searcher;
     }
-    void setResults(List<String> history)
+    public void setResults(List<String> history)
     {
         data=history;
     }

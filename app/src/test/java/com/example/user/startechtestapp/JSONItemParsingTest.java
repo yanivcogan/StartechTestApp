@@ -1,5 +1,8 @@
 package com.example.user.startechtestapp;
 
+import com.example.user.startechtestapp.ItemFunctions.Item;
+import com.example.user.startechtestapp.ItemFunctions.ItemsJSONParser;
+
 import org.junit.Test;
 
 import java.util.List;
@@ -36,7 +39,7 @@ public class JSONItemParsingTest {
                 "]";
         List<Item>itemList;
         //act
-        itemList=ItemsJSONParser.parse(jsonList);
+        itemList= ItemsJSONParser.parse(jsonList);
         //assert
         assertEquals(itemList.size(), 1);
     }

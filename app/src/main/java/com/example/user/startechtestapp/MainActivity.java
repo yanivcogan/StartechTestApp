@@ -1,13 +1,27 @@
 package com.example.user.startechtestapp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+
+import com.example.user.startechtestapp.ItemFunctions.Item;
+import com.example.user.startechtestapp.ItemFunctions.ItemsDrawer;
+import com.example.user.startechtestapp.ItemFunctions.ItemsJSONParser;
+import com.example.user.startechtestapp.SchemeRouting.SchemeRouter;
+import com.example.user.startechtestapp.Search.Previewer;
+import com.example.user.startechtestapp.Search.SearchBarInitiator;
+import com.example.user.startechtestapp.Search.SearchResultsAdapter;
+import com.example.user.startechtestapp.Search.VisibleItemsGetter;
+
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static android.text.TextUtils.isEmpty;
 
 public class MainActivity extends AppCompatActivity {
     Timer frameTimer;
@@ -24,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //check if opened using deeplinks, and if so route to the appropriate activity
+        SchemeRouter router=new SchemeRouter(this);
+        Uri data = this.getIntent().getData();
+        if (data != null && data.isHierarchical()) {
+            String uri = this.getIntent().getDataString();
+            if(isEmpty(uri))
+            {
+                router.route(uri);
+            }
+        }
         //sets the layout that this code can reference
         setContentView(R.layout.activity_main);
         context = getApplicationContext();
@@ -68,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
         searchBarInitiator=new SearchBarInitiator();
         searchBarInitiator.initiateSearchBar(this);
         searchResultsRV = (RecyclerView) findViewById(R.id.searchResultsListContainer);
-        LayoutControlsInitiator.initiateControls(this, searchResultsRV);
         searchResultsAdapter = new SearchResultsAdapter(results, context, R.layout.single_grid_item, itemPreviewer);
+        LayoutControlsInitiator layoutControlsInitiator = new LayoutControlsInitiator();
+        layoutControlsInitiator.initiateLayoutControls(this, searchResultsRV, searchResultsAdapter);
         searchResultsRV.setAdapter(searchResultsAdapter);
         //create a preview view
         itemPreviewer = new Previewer(this);

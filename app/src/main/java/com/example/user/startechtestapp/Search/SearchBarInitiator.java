@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Search;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,18 +10,21 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.user.startechtestapp.History.SearchHistoryAdapter;
+import com.example.user.startechtestapp.R;
 
-class SearchBarInitiator {
+
+public class SearchBarInitiator {
     private EditText searchBar;
     private RecyclerView searchHistoryRV;
     private SearchHistoryAdapter searchHistoryAdapter;
     private Searcher searcher;
 
-    void initiateSearchBar(final Activity context)
+    public void initiateSearchBar(final Activity context)
     {
         searcher=new Searcher(context);
-        searchBar = (EditText) context.findViewById(R.id.searchBar);
-        searchHistoryRV = (RecyclerView) context.findViewById(R.id.historyListContainer);
+        searchBar = context.findViewById(R.id.searchBar);
+        searchHistoryRV = context.findViewById(R.id.historyListContainer);
         searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -38,27 +41,27 @@ class SearchBarInitiator {
             }
         });
         searchBar.setOnKeyListener(new View.OnKeyListener() {
-        public boolean onKey(View v, int keyCode, KeyEvent event) {
-            // If the event is a key-down event on the "enter" button
-            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    search();
-                    return true;
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    // If the event is a key-down event on the "enter" button
+                    if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                       search();
+                       return true;
+                    }
+                return false;
             }
-            return false;
-        }
-    });
+        });
 
-        searchHistoryRV = (RecyclerView) context.findViewById(R.id.historyListContainer);
+        searchHistoryRV = context.findViewById(R.id.historyListContainer);
         populateSearchHistoryAdapter(context);
 
-        ImageButton searchButton = (ImageButton) context.findViewById(R.id.searchButton);
+        ImageButton searchButton = context.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             search();
             }
         });
     }
+
     private void search()
     {
         if(searcher!=null&&searchBar!=null) {
@@ -67,6 +70,7 @@ class SearchBarInitiator {
             searcher.search(searchTerm);
         }
     }
+
     private void populateSearchHistoryAdapter(Activity context)
     {
         if (searchHistoryAdapter ==null)

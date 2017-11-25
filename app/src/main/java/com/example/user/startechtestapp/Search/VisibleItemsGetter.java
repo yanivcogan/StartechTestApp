@@ -1,11 +1,14 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Search;
 
 import android.support.v7.widget.LinearLayoutManager;
+
+import com.example.user.startechtestapp.ItemFunctions.Item;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class VisibleItemsGetter {
-    static List<Item> getVisibleItems(LinearLayoutManager lm, List<Item> li)
+public class VisibleItemsGetter {
+    public static List<Item> getVisibleItems(LinearLayoutManager lm, List<Item> li)
     {
         List<Item> res = new ArrayList<>();
         int beg = lm.findFirstVisibleItemPosition();

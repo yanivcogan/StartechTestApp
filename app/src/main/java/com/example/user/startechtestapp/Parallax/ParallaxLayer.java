@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Parallax;
 
 import android.content.Context;
 import android.graphics.Bitmap;

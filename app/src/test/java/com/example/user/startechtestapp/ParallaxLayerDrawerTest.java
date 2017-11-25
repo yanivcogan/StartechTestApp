@@ -2,6 +2,9 @@ package com.example.user.startechtestapp;
 
 import android.graphics.Point;
 
+import com.example.user.startechtestapp.Parallax.ParallaxLayerDrawer;
+import com.example.user.startechtestapp.Parallax.ParallaxViewDrawer;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -25,7 +28,7 @@ public class ParallaxLayerDrawerTest {
         double tiltX=1;
         double tiltY=0;
         Point origin = ParallaxLayerDrawer.calcLayerOrigin(frameWidth,frameHeight,layerWidth,layerHeight,offsetX,offsetY,parallaxFactorX,parallaxFactorY,tiltX,tiltY);
-        int result = (int)(250+ParallaxViewDrawer.parallaxStrength*frameWidth);
+        int result = (int)(250+ ParallaxViewDrawer.parallaxStrength*frameWidth);
         assertEquals(origin.y, result);
     }
 }

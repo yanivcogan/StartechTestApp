@@ -34,6 +34,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/canvasContainer">
 
         <TextView

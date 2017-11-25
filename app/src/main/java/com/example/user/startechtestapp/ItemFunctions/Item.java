@@ -1,7 +1,11 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.ItemFunctions;
 
 import android.content.Context;
 import android.widget.ImageView;
+
+import com.example.user.startechtestapp.Graphics.ImageViewDrawer;
+import com.example.user.startechtestapp.Parallax.ParallaxView;
+import com.example.user.startechtestapp.Parallax.ParallaxViewDrawer;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -33,14 +37,14 @@ public class Item {
         this.coverImgPath = coverImgPath;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
     void setTitle(String title) {
         this.title = title;
     }
-    String getAuthorName() {
+    public String getAuthorName() {
         return authorName;
     }
 
@@ -120,23 +124,23 @@ public class Item {
         this.authorId = authorId;
     }
 
-    void setImageView (ImageView iv)
+    public void setImageView (ImageView iv)
     {
         if(canvasDisplay==null)
         {
-            canvasDisplay=new ImageViewDrawer(iv, 500, 500);
+            canvasDisplay=new ImageViewDrawer(iv, 1000, 1000);
         }
     }
 
-    ImageViewDrawer getImageView ()
+    public ImageViewDrawer getImageView ()
     {
         return canvasDisplay;
     }
-    void loadParallaxLayersImages(Context context)
+    public void loadParallaxLayersImages(Context context)
     {
         parallaxThumbnail.loadLayerImages(context);
     }
-    void draw(double[] tilt)
+    public void draw(double[] tilt)
     {
         if(canvasDisplay!=null)
         {
@@ -145,7 +149,7 @@ public class Item {
         }
     }
 
-    void goToPage (Context origin)
+    public void goToPage (Context origin)
     {
         ItemPageDirector.goToItemPage(this, origin);
     }

@@ -1,6 +1,8 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Search;
 
 import android.app.Activity;
+
+import com.example.user.startechtestapp.History.HistoryRepository;
 
 public class Searcher {
     private HistoryRepository historyRepository;
@@ -8,7 +10,7 @@ public class Searcher {
         this.historyRepository = new HistoryRepository(context);
         this.historyRepository.fetchData();
     }
-    void search (String s)
+    public void search (String s)
     {
         historyRepository.addSearchTerm(s);
     }

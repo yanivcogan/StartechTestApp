@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Graphics;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,8 +8,10 @@ import java.util.List;
 
 public class ImageViewDrawer {
     private List<ImageView> imageViews;
+    private Bitmap bitmap;
+    private Canvas canvas;
 
-    Canvas getCanvas() {
+    public Canvas getCanvas() {
         return canvas;
     }
 
@@ -17,9 +19,8 @@ public class ImageViewDrawer {
         this.canvas = canvas;
     }
 
-    private Canvas canvas;
-    private Bitmap bitmap;
-    ImageViewDrawer(ImageView iv, int width, int height)
+
+    public ImageViewDrawer(ImageView iv, int width, int height)
     {
         this.imageViews = new ArrayList<>();
         this.addView(iv);
@@ -27,15 +28,15 @@ public class ImageViewDrawer {
         this.canvas = new Canvas(bitmap);
     }
 
-    void addView(ImageView iv)
+    public void addView(ImageView iv)
     {
         this.imageViews.add(iv);
     }
-    void removeView(ImageView toRemove)
+    public void removeView(ImageView toRemove)
     {
             this.imageViews.remove(toRemove);
     }
-    void updateViews()
+    public void updateViews()
     {
         for (ImageView iv:imageViews) {
             iv.setImageBitmap(bitmap);

@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Parallax;
 
 
 import android.content.Context;
@@ -33,7 +33,7 @@ public class ParallaxView {
         }
     }
 
-    void loadLayerImages(Context context)
+    public void loadLayerImages(Context context)
     {
         this.loadLayerImages(context, false);
     }

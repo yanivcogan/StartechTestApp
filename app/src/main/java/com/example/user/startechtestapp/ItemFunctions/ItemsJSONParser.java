@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.ItemFunctions;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -7,9 +7,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-class ItemsJSONParser {
+public class ItemsJSONParser {
 
-    static List<Item> parse(String s)
+    public static List<Item> parse(String s)
     {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.excludeFieldsWithoutExposeAnnotation().create();

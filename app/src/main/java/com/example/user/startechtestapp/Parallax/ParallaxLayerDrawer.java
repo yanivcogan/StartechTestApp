@@ -1,13 +1,13 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.Parallax;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-class ParallaxLayerDrawer {
+public class ParallaxLayerDrawer {
     private static Paint p = new Paint();
 
-    static void draw(Canvas cvs, ParallaxLayer l, double[] tilt)
+    public static void draw(Canvas cvs, ParallaxLayer l, double[] tilt)
     {
         if(l.getLayerImg()!=null) {
             Point origin = calcLayerOrigin(cvs.getWidth(), cvs.getHeight(), l.getLayerImg().getWidth(), l.getLayerImg().getHeight(), l.getCenterOffsetX(), l.getCenterOffsetY(), l.getParallaxFactorX(), l.getParallaxFactorY(), tilt[2], tilt[0]);
@@ -15,7 +15,7 @@ class ParallaxLayerDrawer {
         }
     }
 
-    static Point calcLayerOrigin(int frameWidth, int frameHeight, int layerWidth, int layerHeight, double offsetX, double offsetY, double parallaxFactorX, double parallaxFactorY, double tiltX, double tiltY)
+    private static Point calcLayerOrigin(int frameWidth, int frameHeight, int layerWidth, int layerHeight, double offsetX, double offsetY, double parallaxFactorX, double parallaxFactorY, double tiltX, double tiltY)
     {
         int maxPixelOffsetX = (int)(ParallaxViewDrawer.parallaxStrength*frameWidth);
         int maxPixelOffsetY = (int)(ParallaxViewDrawer.parallaxStrength*frameHeight);

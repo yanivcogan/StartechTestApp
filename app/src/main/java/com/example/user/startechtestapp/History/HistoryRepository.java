@@ -1,4 +1,4 @@
-package com.example.user.startechtestapp;
+package com.example.user.startechtestapp.History;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,19 +12,18 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.text.TextUtils.isEmpty;
+
 public class HistoryRepository {
     private List<String> history=new ArrayList<>();
     private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
     private Gson gson;
-    @SuppressLint("CommitPrefEdits")
-    HistoryRepository(Activity context)
+    public HistoryRepository(Activity context)
     {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        editor = preferences.edit();
         gson = new Gson();
     }
-    void fetchData()
+    public void fetchData()
     {
         String historyJSON = preferences.getString("History", "");
         Type stringListType = new TypeToken<ArrayList<String>>(){}.getType();
@@ -32,19 +31,20 @@ public class HistoryRepository {
         if(history==null)
             history=new ArrayList<>();
     }
-    List<String> getHistory()
+    public List<String> getHistory()
     {
         return history;
     }
-    void addSearchTerm(String search)
+    public void addSearchTerm(String search)
     {
-        if(!search.equals("")&&history.indexOf(search)==-1) {
+        if(!isEmpty(search)&&history.indexOf(search)==-1) {
             history.add(search);
             updateLocalStorage();
         }
     }
     private void updateLocalStorage()
     {
+        SharedPreferences.Editor editor = preferences.edit();
         String historyJSON = gson.toJson(history);
         editor.putString("History",historyJSON);
         editor.apply();
