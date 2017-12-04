@@ -9,8 +9,10 @@ import com.example.user.startechtestapp.Parallax.ParallaxViewDrawer;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class Item {
+
+public class Item implements Serializable{
     @Expose @SerializedName("title") private String title;
     @Expose @SerializedName("author_id") private int authorId;
     @Expose @SerializedName("author_name") private String authorName;
@@ -22,9 +24,9 @@ public class Item {
     @Expose @SerializedName("thumbnail_path") private String thumbnailPath;
     @Expose @SerializedName("cover_image_path") private String coverImgPath;
     @Expose @SerializedName("parallax_thumbnail") private ParallaxView parallaxThumbnail;
-    private ImageViewDrawer canvasDisplay = null;
+    private transient ImageViewDrawer canvasDisplay = null;
 
-    public Item(String title, int authorId, String authorName, Integer seriesId, String seriesName, int publicationYear, String isbn, String language, String thumbnailPath, String coverImgPath) {
+    public Item(String title, int authorId, String authorName, Integer seriesId, String seriesName, int publicationYear, String isbn, String language, String thumbnailPath, String coverImgPath, ParallaxView parallaxThumbnail) {
         this.title = title;
         this.authorId = authorId;
         this.authorName = authorName;
@@ -35,6 +37,7 @@ public class Item {
         this.language = language;
         this.thumbnailPath = thumbnailPath;
         this.coverImgPath = coverImgPath;
+        this.parallaxThumbnail= parallaxThumbnail;
     }
 
     public String getTitle() {
@@ -79,7 +82,10 @@ public class Item {
     String getIsbn() {
         return isbn;
     }
-
+    public String getGoodreadsLink()
+    {
+        return "https://www.goodreads.com/book/isbn/"+this.isbn;
+    }
     void setIsbn(String isbn) {
         this.isbn = isbn;
     }
@@ -130,6 +136,7 @@ public class Item {
         {
             canvasDisplay=new ImageViewDrawer(iv, 1000, 1000);
         }
+        canvasDisplay.setView(iv);
     }
 
     public ImageViewDrawer getImageView ()
@@ -138,7 +145,9 @@ public class Item {
     }
     public void loadParallaxLayersImages(Context context)
     {
-        parallaxThumbnail.loadLayerImages(context);
+        if (parallaxThumbnail!=null) {
+            parallaxThumbnail.loadLayerImages(context);
+        }
     }
     public void draw(double[] tilt)
     {
@@ -154,6 +163,21 @@ public class Item {
         ItemPageDirector.goToItemPage(this, origin);
     }
 
+    public Item clone()
+    {
+        return new Item(this.title,
+        this.authorId,
+        this.authorName,
+        this.seriesId,
+        this.seriesName,
+        this.publicationYear,
+        this.isbn,
+        this.language,
+        this.thumbnailPath,
+        this.coverImgPath,
+        this.parallaxThumbnail);
+
+    }
     public String toString ()
     {
         return "{"+this.title+"/"+this.authorName+"}";

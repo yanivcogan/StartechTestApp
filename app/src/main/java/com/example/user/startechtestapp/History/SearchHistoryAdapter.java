@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.user.startechtestapp.R;
@@ -51,18 +52,21 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter <SearchHistoryAda
     class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView suggestion;
+        LinearLayout suggestionHitbox;
 
         ViewHolder(View historyItemView)
         {
             super(historyItemView);
-            suggestion = (TextView) historyItemView.findViewById(R.id.suggestionText);
+            suggestion = historyItemView.findViewById(R.id.suggestionText);
+            suggestionHitbox= historyItemView.findViewById(R.id.historyItem);
         }
         void bind(final String historyItem)
         {
             suggestion.setText(historyItem);
-            suggestion.setOnClickListener(new View.OnClickListener() {
+            suggestionHitbox.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
-                    searcher.search(historyItem);
+                    searcher.search(suggestion.getText().toString());
                 }
             });
         }

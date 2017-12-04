@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:weightSum="1"
-    android:background="#fbfccc">
+    android:background="#fcfbcc">
 
     <LinearLayout
     android:layout_width="match_parent"
@@ -31,8 +33,10 @@
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:nextFocusUp="@id/searchBar"
+        android:nextFocusLeft="@id/searchBar"
         android:inputType="textPersonName"
-        android:text="Search"
+        android:hint="Search"
         android:textColor="#220022"/>
 </LinearLayout>
 <FrameLayout
@@ -53,8 +57,8 @@
 
             <FrameLayout
                 android:id="@+id/layoutSwitchWrapper"
-                android:layout_width="30dp"
-                android:layout_height="30dp">
+                android:layout_width="29dp"
+                android:layout_height="29dp">
 
                 <Button
                     android:id="@+id/layoutSwitchList"
@@ -87,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:background="#dd000000"/>
+        android:background="#dd000000"
+        android:visibility="gone"/>
 
 </FrameLayout>
 </LinearLayout>

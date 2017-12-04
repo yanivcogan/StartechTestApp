@@ -1,59 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     android:orientation="vertical"
     android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/layoutSwitchGrid"
+        <ImageButton
+            android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.13"
-            android:text="Grid"
-            android:textSize="10dp"
-            />
-        <Button
-            android:id="@+id/layoutSwitchList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.13"
-            android:text="List"
-            android:textSize="10dp"
-            />
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:contentDescription="search"
+            android:focusable="true"
+            android:tint="@android:color/background_dark"
+            app:srcCompat="@android:drawable/ic_menu_search" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.13"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvListContainer"
+        <EditText
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.06" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:inputType="textPersonName"
+            android:text="Search"
+            android:textColor="#220022"/>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.06"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <FrameLayout
+                    android:id="@+id/layoutSwitchWrapper"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp">
+
+                    <Button
+                        android:id="@+id/layoutSwitchList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_icon"
+                        android:backgroundTint="#510"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/layoutSwitchGrid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grid_icon"
+                        android:backgroundTint="#510" />
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.13"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/searchResultsListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+                android:weightSum="1"
             android:orientation="vertical">
 
             <FrameLayout
                 android:id="@+id/canvasContainer"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:layout_weight="0.2"
                 android:layout_gravity="center_horizontal">
 
                 <ImageView
@@ -64,30 +111,37 @@
 
             </FrameLayout>
 
-        <TextView
-            android:id="@+id/previewItemTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            />
+            <TextView
+                android:id="@+id/previewItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="Title"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                />
 
-
-        <TextView
-            android:id="@+id/previewItemDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ItemDesc"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            />
+            <TextView
+                android:id="@+id/previewItemDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="ItemDesc"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/historyListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:background="#dd000000"/>
+    </FrameLayout>
 </LinearLayout>
 

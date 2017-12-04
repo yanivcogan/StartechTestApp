@@ -7,13 +7,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 class SensorsListener {
-    private static SensorManager sensorManager;
-    private static Sensor accSensor, magSensor;
-    private static double [] tiltData ={0,0,0};
-    private static float [] orientation = {0,0,0};
-    private static float [] acceleration ={0,0,0};
+    private SensorManager sensorManager;
+    private Sensor accSensor, magSensor;
+    private double [] tiltData ={0,0,0};
+    private float [] orientation = {0,0,0};
+    private float [] acceleration ={0,0,0};
 
-    static void InstantiateListener(Context context)
+    void InstantiateListener(Context context)
     {
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
@@ -21,7 +21,7 @@ class SensorsListener {
             magSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         }
     }
-    private static SensorEventListener gyroListener = new SensorEventListener() {
+    private SensorEventListener gyroListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
             int type=event.sensor.getType();
@@ -65,19 +65,19 @@ class SensorsListener {
         }
         return new double []{0,0,0};
     }
-    static void start()
+    void start()
     {
         sensorManager.registerListener(gyroListener, accSensor, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(gyroListener, magSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
     }
-    static void stop()
+    void stop()
     {
         sensorManager.unregisterListener(gyroListener,accSensor);
         sensorManager.unregisterListener(gyroListener,magSensor);
 
     }
-    static double [] getTilt()
+    double [] getTilt()
     {
         return tiltData;
     }

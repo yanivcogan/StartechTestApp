@@ -15,6 +15,7 @@ import com.example.user.startechtestapp.SchemeRouting.SchemeRouter;
 import com.example.user.startechtestapp.Search.Previewer;
 import com.example.user.startechtestapp.Search.SearchBarInitiator;
 import com.example.user.startechtestapp.Search.SearchResultsAdapter;
+import com.example.user.startechtestapp.Search.Searcher;
 import com.example.user.startechtestapp.Search.VisibleItemsGetter;
 
 import java.util.List;
@@ -27,19 +28,21 @@ public class MainActivity extends AppCompatActivity {
     Timer frameTimer;
     int framesPerSec = 8;
     int frameRate = 1000/framesPerSec;
+    SensorsListener sensorsListener;
     RecyclerView searchResultsRV;
     SearchResultsAdapter searchResultsAdapter;
-    SearchBarInitiator searchBarInitiator;
+    Searcher searcher;
     Context context;
     TXTReader txtReader;
     List<Item> results;
     Previewer itemPreviewer;
+    ItemsDrawer itemsDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //check if opened using deeplinks, and if so route to the appropriate activity
-        SchemeRouter router=new SchemeRouter(this);
+        /*SchemeRouter router=new SchemeRouter(this);
         Uri data = this.getIntent().getData();
         if (data != null && data.isHierarchical()) {
             String uri = this.getIntent().getDataString();
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 router.route(uri);
             }
-        }
+        }*/
         //sets the layout that this code can reference
         setContentView(R.layout.activity_main);
         context = getApplicationContext();
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         //construct
         buildUI();
         //start refresh timer to redraw thumbnails
+        itemsDrawer = new ItemsDrawer();
         frameTimer = new Timer();
         frameTimer.scheduleAtFixedRate(new TimerTask(){
             @Override
@@ -65,19 +69,20 @@ public class MainActivity extends AppCompatActivity {
             }
         },0,frameRate);
         //start listening for orientation changes to the device
-        SensorsListener.InstantiateListener(context);
+        sensorsListener=new SensorsListener();
+        sensorsListener.InstantiateListener(this);
     }
     @Override
     protected void onResume ()
     {
         super.onResume();
-        SensorsListener.start();
+        sensorsListener.start();
     }
     @Override
     protected void onPause ()
     {
         super.onPause();
-        SensorsListener.stop();
+        sensorsListener.stop();
     }
     private void initializeResults()
     {
@@ -89,8 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void buildUI()
     {
-        searchBarInitiator=new SearchBarInitiator();
-        searchBarInitiator.initiateSearchBar(this);
+        searcher=new Searcher(this);
         searchResultsRV = (RecyclerView) findViewById(R.id.searchResultsListContainer);
         searchResultsAdapter = new SearchResultsAdapter(results, context, R.layout.single_grid_item, itemPreviewer);
         LayoutControlsInitiator layoutControlsInitiator = new LayoutControlsInitiator();
@@ -105,8 +109,9 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                double [] tilt =SensorsListener.getTilt();
-                ItemsDrawer.draw(VisibleItemsGetter.getVisibleItems((LinearLayoutManager)searchResultsRV.getLayoutManager(),results), tilt);
+                double [] tilt =sensorsListener.getTilt();
+                itemsDrawer.drawItemsList(VisibleItemsGetter.getVisibleItems((LinearLayoutManager)searchResultsRV.getLayoutManager(),results), tilt);
+                itemsDrawer.drawItem(itemPreviewer.getPreviewItem(), tilt);
             }
         });
     }

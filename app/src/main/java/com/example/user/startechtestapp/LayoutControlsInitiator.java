@@ -33,14 +33,14 @@ class LayoutControlsInitiator {
     {
         toGrid.setVisibility(View.GONE);
         toList.setVisibility(View.VISIBLE);
-        adapter.setItemLayout(R.layout.single_grid_item);
+        adapter.setItemLayout(1);
         recycler.setLayoutManager(new GridLayoutManager(context, context.getResources().getInteger(R.integer.gridColCount)));
     }
     private void setLayoutToList(final Activity context, final RecyclerView recycler)
     {
         toList.setVisibility(View.GONE);
         toGrid.setVisibility(View.VISIBLE);
-        adapter.setItemLayout(R.layout.single_list_item);
+        adapter.setItemLayout(0);
         recycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false));
     }
 }

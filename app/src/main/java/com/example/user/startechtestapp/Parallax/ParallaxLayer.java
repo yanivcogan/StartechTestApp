@@ -5,14 +5,19 @@ import android.graphics.Bitmap;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ParallaxLayer {
+import java.io.Serializable;
+
+public class ParallaxLayer implements Serializable{
     @Expose @SerializedName("name")private String name;
     @Expose @SerializedName("image_path")private String path;
-    private Bitmap layerImg;
+    transient private Bitmap layerImg;
     @Expose @SerializedName("center_offset_x")private double centerOffsetX;
     @Expose @SerializedName("center_offset_y")private double centerOffsetY;
     @Expose @SerializedName("parallax_factor_x")private double parallaxFactorX;
     @Expose @SerializedName("parallax_factor_y")private double parallaxFactorY;
+    @Expose @SerializedName("size_factor_y")private double sizeFactorY=1;
+    @Expose @SerializedName("size_factor_x")private double sizeFactorX=1;
+
 
     public String getName() {
         return name;
@@ -69,12 +74,19 @@ public class ParallaxLayer {
     public void setParallaxFactorY(double parallaxFactorY) {
         this.parallaxFactorY = parallaxFactorY;
     }
-
+double getSizeFactorY()
+{
+    return sizeFactorY;
+}
+double getSizeFactorX()
+{
+    return sizeFactorX;
+}
     void loadImage(Context context, boolean reloadIfExists)
     {
         if(reloadIfExists||layerImg==null)
         {
-            ParallaxLayerImageFetcher.loadImage(context, path, this);
+            ParallaxLayerImageFetcher.loadImage(context, path, this, sizeFactorX, sizeFactorY);
         }
     }
     void setImageBitmap(Bitmap img)

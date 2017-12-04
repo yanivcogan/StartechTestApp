@@ -6,13 +6,18 @@ import com.example.user.startechtestapp.History.HistoryRepository;
 
 public class Searcher {
     private HistoryRepository historyRepository;
-    Searcher(Activity context) {
+    private SearchBarInitiator searchBarInitiator;
+    public Searcher(Activity context) {
         this.historyRepository = new HistoryRepository(context);
         this.historyRepository.fetchData();
+        this.searchBarInitiator = new SearchBarInitiator();
+        searchBarInitiator.initiateSearchBar(context, this);
     }
     public void search (String s)
     {
         historyRepository.addSearchTerm(s);
+        searchBarInitiator.clearSearchFocus();
+        searchBarInitiator.setSearchText(s);
     }
 
     HistoryRepository getHistoryRepository() {

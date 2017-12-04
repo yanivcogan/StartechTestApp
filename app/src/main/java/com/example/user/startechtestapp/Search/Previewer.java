@@ -21,20 +21,14 @@ public class Previewer {
     }
     public void setPreviewItem(Item it)
     {
-        unsetPreviewItem();
-        this.previewItem=it;
+        this.previewItem=it.clone();
+        this.previewItem.setImageView(previewItemThumbnail);
         previewItemTitle.setText(previewItem.getTitle());
         previewItemDescription.setText(previewItem.getAuthorName());
-        it.getImageView().addView(previewItemThumbnail);
+        it.getImageView().setView(previewItemThumbnail);
     }
-    private void unsetPreviewItem()
+    public Item getPreviewItem()
     {
-        if(this.previewItem!=null)
-        {
-            if(this.previewItem.getImageView()!=null)
-            {
-                this.previewItem.getImageView().removeView(previewItemThumbnail);
-            }
-        }
+        return this.previewItem;
     }
 }

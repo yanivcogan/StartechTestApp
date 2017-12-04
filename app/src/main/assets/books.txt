@@ -3,7 +3,7 @@
 "title":"Moominvalley in November",
 "author_id":0,
 "author_name":"Tove Jansson",
-"series_id":0,
+"series_id":1,
 "series_name":"The Moomins",
 "publication_year":1970,
 "ISBN":"0374453098",
@@ -15,5 +15,58 @@
 {"image_path":"moomintroll","name":"moomintroll", "center_offset_x":-0.1, "center_offset_y":0.3, "parallax_factor_x":0.5, "parallax_factor_y":0.5}
 ]},
 "tags":["fiction", "melancholy", "kids"]
+},
+{
+"title":"Pirates and Emperors - Old and New",
+"author_id":1,
+"author_name":"Noam Chomsky",
+"series_id":0,
+"series_name":"no series",
+"publication_year":1986,
+"ISBN":"0896086852",
+"language":"en",
+"thumbnail_path":"",
+"cover_image_path":"",
+"parallax_thumbnail":{"layers":[
+{"image_path":"triangles_background","name":"triangles_background", "center_offset_x":0, "center_offset_y":0, "parallax_factor_x":-0.1, "parallax_factor_y":-0.1},
+{"image_path":"chomsky","name":"chomsky_ghost", "center_offset_x":0, "center_offset_y":0.15, "parallax_factor_x":0.3, "parallax_factor_y":0.3}
+]},
+"tags":["non-fiction", "foreign policy"]
+},
+{
+"title":"Coraline",
+"author_id":2,
+"author_name":"Neil Gaiman",
+"series_id":0,
+"series_name":"none",
+"publication_year":2002,
+"ISBN":"0061139378",
+"language":"en",
+"thumbnail_path":"",
+"cover_image_path":"",
+"parallax_thumbnail":{"layers":[
+{"image_path":"fabric_background","name":"fabric", "center_offset_x":0, "center_offset_y":0, "parallax_factor_x":-0.1, "parallax_factor_y":-0.1},
+{"image_path":"button","name":"button_1", "center_offset_x":-0.2, "center_offset_y":0.3, "parallax_factor_x":0.5, "parallax_factor_y":0.5, "size_factor_x":0.6, "size_factor_y":0.6},
+{"image_path":"button","name":"button_2", "center_offset_x":0.4, "center_offset_y":-0.2, "parallax_factor_x":0.6, "parallax_factor_y":0.6},
+{"image_path":"needle","name":"needle_and_thread", "center_offset_x":0.2, "center_offset_y":-0.1, "parallax_factor_x":1, "parallax_factor_y":1}
+]},
+"tags":["fiction", "horror", "kids", "creepy"]
+},
+{
+"title":"Binti",
+"author_id":3,
+"author_name":"Nnedi Okorafor",
+"series_id":2,
+"series_name":"Binti",
+"publication_year":2015,
+"ISBN":"0765384469",
+"language":"en",
+"thumbnail_path":"",
+"cover_image_path":"",
+"parallax_thumbnail":{"layers":[
+{"image_path":"starry_night_background","name":"night sky", "center_offset_x":0, "center_offset_y":0, "parallax_factor_x":-0.1, "parallax_factor_y":-0.1},
+{"image_path":"binti","name":"binti", "center_offset_x":0, "center_offset_y":0.15, "parallax_factor_x":0.5, "parallax_factor_y":0.5}
+]},
+"tags":["fiction", "sci fi", "alien", "afro"]
 }
 ]

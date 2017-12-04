@@ -20,9 +20,9 @@ public class SearchBarInitiator {
     private SearchHistoryAdapter searchHistoryAdapter;
     private Searcher searcher;
 
-    public void initiateSearchBar(final Activity context)
+    public void initiateSearchBar(final Activity context, Searcher searcher)
     {
-        searcher=new Searcher(context);
+        this.searcher=searcher;
         searchBar = context.findViewById(R.id.searchBar);
         searchHistoryRV = context.findViewById(R.id.historyListContainer);
         searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -66,11 +66,17 @@ public class SearchBarInitiator {
     {
         if(searcher!=null&&searchBar!=null) {
             String searchTerm = searchBar.getText().toString();
-            searchBar.clearFocus();
             searcher.search(searchTerm);
         }
     }
-
+    public void clearSearchFocus()
+    {
+        searchBar.clearFocus();
+    }
+    public void setSearchText(String s)
+    {
+        searchBar.setText(s);
+    }
     private void populateSearchHistoryAdapter(Activity context)
     {
         if (searchHistoryAdapter ==null)

@@ -10,9 +10,7 @@ class ItemPageDirector {
     static void goToItemPage(Item item, Context origin)
     {
         Intent activityIntent = new Intent(origin, SecondaryActivity.class);
-        Bundle aBundle = new Bundle();
-        aBundle.putString("name",item.getTitle());
-        activityIntent.putExtra("itemData", aBundle);
+        activityIntent.putExtra("item", item.clone());
         origin.startActivity(activityIntent);
     }
 }

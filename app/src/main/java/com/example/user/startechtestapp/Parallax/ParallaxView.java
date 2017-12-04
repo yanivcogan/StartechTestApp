@@ -2,13 +2,15 @@ package com.example.user.startechtestapp.Parallax;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ParallaxView {
+public class ParallaxView implements Serializable{
     @Expose @SerializedName("layers")
     private List<ParallaxLayer> layers;
 
@@ -29,7 +31,10 @@ public class ParallaxView {
     {
         for (ParallaxLayer layer : layers)
         {
-            layer.loadImage(context, reloadIfExists);
+            if(layer!=null) {
+                //Log.d("loaded successfully", layer.getName());
+                layer.loadImage(context, reloadIfExists);
+            }
         }
     }
 

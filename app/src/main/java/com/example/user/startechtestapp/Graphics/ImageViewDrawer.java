@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImageViewDrawer {
-    private List<ImageView> imageViews;
+    private ImageView imageView;
     private Bitmap bitmap;
     private Canvas canvas;
 
@@ -19,27 +19,18 @@ public class ImageViewDrawer {
         this.canvas = canvas;
     }
 
-
     public ImageViewDrawer(ImageView iv, int width, int height)
     {
-        this.imageViews = new ArrayList<>();
-        this.addView(iv);
+        this.imageView=iv;
         this.bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         this.canvas = new Canvas(bitmap);
     }
-
-    public void addView(ImageView iv)
+    public void setView(ImageView iv)
     {
-        this.imageViews.add(iv);
-    }
-    public void removeView(ImageView toRemove)
-    {
-            this.imageViews.remove(toRemove);
+        imageView=iv;
     }
     public void updateViews()
     {
-        for (ImageView iv:imageViews) {
-            iv.setImageBitmap(bitmap);
-        }
+        imageView.setImageBitmap(bitmap);
     }
 }

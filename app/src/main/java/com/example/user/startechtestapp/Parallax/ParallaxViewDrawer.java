@@ -8,7 +8,9 @@ public class ParallaxViewDrawer {
     {
         for (ParallaxLayer layer:PV.getLayers())
         {
-            ParallaxLayerDrawer.draw(cvs, layer, tilt);
+            if(layer!=null) {
+                ParallaxLayerDrawer.draw(cvs, layer, tilt);
+            }
         }
     }
 }

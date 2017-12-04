@@ -14,8 +14,8 @@ public class ExternalWebView extends AppCompatActivity {
         setContentView(R.layout.activity_external_web_view);
         Intent targetIntent = getIntent();
         Bundle purchaseData = targetIntent.getBundleExtra("purchaseData");
-        String url = purchaseData.getString("imgurl");
-        WebView webview = (WebView)findViewById(R.id.mainWebFrame);
+        String url = purchaseData.getString("url");
+        WebView webview = findViewById(R.id.mainWebFrame);
         webview.setWebViewClient(new WebViewClient());
         webview.loadUrl(url);
     }
